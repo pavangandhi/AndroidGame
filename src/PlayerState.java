@@ -1,7 +1,7 @@
 public abstract class PlayerState {
 
 	/**
-	 * 
+	 *
 	 * @param hand
 	 */
 	public abstract void pickupTile(Hand hand) {
@@ -10,7 +10,7 @@ public abstract class PlayerState {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param hand
 	 */
 	public void throwTile(Hand hand) {
@@ -22,5 +22,4 @@ public abstract class PlayerState {
 		// TODO - implement PlayerState.askInterrupt
 		throw new UnsupportedOperationException();
 	}
-
 }

@@ -1,6 +1,6 @@
 public class Tile {
 
-	private string type;
+	private String type;
 	private int digit;
 
 }
