@@ -1,11 +1,17 @@
-public class UI {
+public final class UI {
 
-	public void selectTile() {
+	/**
+	 * Privqae constructor since the class does not need to be instantiated
+	 */
+	private UI(){
+	}
+
+	public static void selectTile() {
 		// TODO - implement UI.selectTile
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean askInterrupt() {
+	public static boolean askInterrupt() {
 		// TODO - implement UI.askInterrupt
 		throw new UnsupportedOperationException();
 	}
@@ -14,9 +20,8 @@ public class UI {
 	 * 
 	 * @param player
 	 */
-	public void focusPlayer(Player player) {
-		// TODO - implement UI.focusPlayer
-		throw new UnsupportedOperationException();
+	public static void focusPlayer(Player player) {
+		System.out.print("focusPlayer on -> " + player.getName() + "\n");
 	}
 
 }
