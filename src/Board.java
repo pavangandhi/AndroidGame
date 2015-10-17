@@ -1,24 +1,44 @@
-public class Board {
+import java.util.ArrayList;
+import java.util.List;
 
-	private Tile[] listTile;
+public class Board{
 
-	/**
-	 * 
-	 * @param tile
-	 */
-	public void throwTile(Tile tile) {
-		// TODO - implement Board.throwTile
-		throw new UnsupportedOperationException();
+	private static volatile Board instance = new Board();
+	public static Board getInstance() {
+		return instance;
 	}
 
-	public Tile checkLastTile() {
-		// TODO - implement Board.checkLastTile
-		throw new UnsupportedOperationException();
+	private List<Tile> listTiles = new ArrayList<>();
+	private Tile lastTile;
+
+	private Board(){}
+
+	public void initializeBoard()
+	{
+		lastTile = null;
+		listTiles.clear();
+	}
+
+	public void addTile(Tile tile) {
+		listTiles.add(tile);
+	}
+
+	public Tile getLastTile() {
+		return listTiles.get(listTiles.size());
 	}
 
 	public Tile pickLastTile() {
 		// TODO - implement Board.pickLastTile
 		throw new UnsupportedOperationException();
+	}
+
+	public List<Tile> getListTiles() {
+		return listTiles;
+
+	}
+
+	public void setListTiles(List<Tile> listTiles) {
+		this.listTiles = listTiles;
 	}
 
 }

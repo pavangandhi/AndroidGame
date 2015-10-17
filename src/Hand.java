@@ -1,11 +1,16 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Hand {
+	private static volatile Hand instance = new Hand();
 
 	private Tile selectedTile;
-	private Tile[] listTile;
+
+
+	private List<Tile> listTiles = new ArrayList<>();
 
 	public void setSelectedTile() {
-		// TODO - implement Hand.setSelectedTile
-		throw new UnsupportedOperationException();
+		selectedTile = listTiles.stream().findFirst().get();
 	}
 
 	/**
@@ -13,18 +18,26 @@ public class Hand {
 	 * @param tile
 	 */
 	public void addTile(Tile tile) {
-		// TODO - implement Hand.addTile
-		throw new UnsupportedOperationException();
+		listTiles.add(tile);
+		this.checkVictory();
 	}
 
 	public Tile removeTile() {
-		// TODO - implement Hand.removeTile
-		throw new UnsupportedOperationException();
+		listTiles.remove(selectedTile);
+
+		return selectedTile;
 	}
 
 	public void checkVictory() {
-		// TODO - implement Hand.checkVictory
-		throw new UnsupportedOperationException();
+
+	}
+
+	public List<Tile> getListTiles() {
+		return listTiles;
+	}
+
+	public void setListTiles(List<Tile> listTiles) {
+		this.listTiles = listTiles;
 	}
 
 }
