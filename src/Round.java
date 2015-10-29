@@ -1,3 +1,11 @@
+import Manager.TurnManager;
+import Model.Board;
+import Model.Deck;
+import Model.Player;
+import Rules.SetOfRules;
+import Rules.Strategys.Sichuan.SichuanInterruptionCondition;
+import Rules.Strategys.Sichuan.SichuanVictoryCondition;
+
 public class Round {
 
     private TurnManager turnManager;
@@ -18,6 +26,8 @@ public class Round {
     public void initializeRound() {
         Deck.getInstance().initializeDeck();
         Board.getInstance().initializeBoard();
+        SetOfRules.getInstance().setInterruptionCondition(new SichuanInterruptionCondition());
+        SetOfRules.getInstance().setVictoryCondition(new SichuanVictoryCondition());
         player1 = new Player("1");
         player2 = new Player("2");
         player3 = new Player("3");

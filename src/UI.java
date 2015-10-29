@@ -1,3 +1,6 @@
+import Model.Player;
+import Model.Tile;
+
 import java.util.List;
 
 public final class UI {
