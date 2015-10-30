@@ -2,45 +2,33 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class Board{
+import Model.TileList.TileList;
+
+public class Board extends TileList {
 
 	private static volatile Board instance = new Board();
+
 	public static Board getInstance() {
 		return instance;
 	}
 
-	private List<Tile> listTiles = new ArrayList<>();
-	private Tile lastTile;
-
-	private Board(){}
-
-	public void initializeBoard()
-	{
-		lastTile = null;
-		listTiles.clear();
+	private Board() {
 	}
 
-	public void addTile(Tile tile) {
-		listTiles.add(tile);
+	public void initializeBoard() {
+		tileList.clear();
+		update();
 	}
 
 	public Tile getLastTile() {
-		return listTiles.get(listTiles.size());
+		return tileList.get(tileList.size()-1);
 	}
 
 	public Tile pickLastTile() {
-		// TODO - implement Board.pickLastTile
-		throw new UnsupportedOperationException();
+		Tile tempTile = getLastTile();
+		removeTile(tempTile);
+		return tempTile;
 	}
-
-	public List<Tile> getListTiles() {
-		return listTiles;
-
-	}
-
-	public void setListTiles(List<Tile> listTiles) {
-		this.listTiles = listTiles;
-	}
-
 }

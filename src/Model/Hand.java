@@ -1,50 +1,22 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.List;
+import Model.TileList.TileList;
 
-public class Hand {
-	private static volatile Hand instance = new Hand();
-
-			private Tile selectedTile;
-	private List<Tile> listTiles = new ArrayList<>();
-
-	public void setSelectedTile() {
-		selectedTile = listTiles.stream().findFirst().get();
-	}
-
-	/**
-	 * 
-	 * @param tile
-	 */
-	public void addTile(Tile tile) {
-		listTiles.add(tile);
-		this.checkVictory();
-	}
-
+public class Hand extends TileList {
+	private int selectedTile = -1;
+	
 	public Tile removeTile() {
-		listTiles.remove(selectedTile);
+		Tile tempTile = removeTile(tileList.get(selectedTile));
+		selectedTile = -1;
+		return tempTile;
+	}
 
+	public int getSelectedTile() {
 		return selectedTile;
 	}
 
-	public void checkVictory() {
-
-	}
-
-	public List<Tile> getListTiles() {
-		return listTiles;
-	}
-
-	public void setListTiles(List<Tile> listTiles) {
-		this.listTiles = listTiles;
-	}
-
-	public Tile getSelectedTile() {
-		return selectedTile;
-	}
-
-	public void setSelectedTile(Tile selectedTile) {
+	public void setSelectedTile(int selectedTile) {
 		this.selectedTile = selectedTile;
+		update();
 	}
 }

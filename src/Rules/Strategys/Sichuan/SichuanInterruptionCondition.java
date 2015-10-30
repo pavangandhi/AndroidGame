@@ -11,7 +11,7 @@ public class SichuanInterruptionCondition implements IInterruptionCondition {
 
     //TODO implement algo
     public boolean checkInterruption(Tile tile, Hand hand){
-        return true;
+        return false;
     }
 
 }

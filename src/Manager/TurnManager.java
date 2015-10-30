@@ -1,60 +1,47 @@
 package Manager;
 
-import Model.Player;
-
 import java.util.Observable;
 import java.util.Observer;
+import Constants.PlayerStatus;
+import Model.Player;
 
 public class TurnManager implements Observer {
-	
+
 	private Player currentPlayer;
 	private Player lastPlayer;
-	private int count;
-	
+
+	public void on(Player player) {
+		currentPlayer = player;
+		lastPlayer = currentPlayer;
+		currentPlayer.pickUpFromDeck();
+	}
+
 	public void update(Observable obs, Object status) {
-		switch ((Player.Status)status) {
+		switch ((PlayerStatus) status) {
 		case turnEnded:
-			count++;
+			System.out.println("turnEnded");
 			currentPlayer = currentPlayer.getNext();
 			currentPlayer.checkInterruption();
 			break;
+		case doInterrupt:
+			currentPlayer.pickUpFromBoard();
+			break;
 		case doNotInterrupt:
-			count++;
-			
-			/** Ici il faut faire une initiation pour modifié la variable totalPlayer en fonction du nombre de joueur.
-			 * Une autre méthode serait avec un currentPlayer.getNext() == lastPlayer();
-			 * Seulement cette méthode implique que deux joueurs ne peuvent pas avoir le même nom..
-			 */
-			
-			int totalPlayer = 4;
-			
-			if (count < totalPlayer){
+			if (currentPlayer.getNext() != lastPlayer) {
 				currentPlayer = currentPlayer.getNext();
 				currentPlayer.checkInterruption();
-			}
-			else{
-				count = 0;
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			} else {
 				currentPlayer = lastPlayer.getNext();
 				lastPlayer = currentPlayer;
-				currentPlayer.play();
+				currentPlayer.pickUpFromDeck();
 			}
+			break;
+		case victory:
+			currentPlayer = currentPlayer.getNext();
+			currentPlayer.pickUpFromDeck();
 			break;
 		default:
 			break;
 		}
 	}
-
-	public void on(Player player1) {
-		currentPlayer = player1;
-		lastPlayer = currentPlayer;
-		currentPlayer.play();
-	}
-
-
 }
