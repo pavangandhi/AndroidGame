@@ -22,7 +22,7 @@ public class SichuanInterruptionCondition implements IInterruptionCondition {
                 suit1[(currentTile.digit == tile.digit - 2) ? 0 : 1)] = currentTile.digit;
             }
             else if (currentTile.digit <= tile.digit + 2 && currentTile.digit > tile.digit) {
-                suit1[(currentTile.digit == tile.digit + 2) ? 2 : 3)] = currentTile.digit:
+                suit1[(currentTile.digit == tile.digit + 2) ? 3 : 2)] = currentTile.digit:
             }
         }
         if (numPair >= 2) {
