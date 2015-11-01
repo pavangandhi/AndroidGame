@@ -39,7 +39,6 @@ public class SichuanInterruptionCondition implements IInterruptionCondition {
                     return true;
                 }
             }
-            numberSuit += 1;
         }
         return false;
     }
