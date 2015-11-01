@@ -13,8 +13,8 @@ public class SichuanInterruptionCondition implements IInterruptionCondition {
         int numPair = 0;
         int suit1[] = {-1, -1, -1, -1};
         for (Tile currentTile : hand.getTileList()) {
-            if currentTile.type == tile.type {
-                if currentTile.digit == tile.digit {
+            if (currentTile.type == tile.type) {
+                if (currentTile.digit == tile.digit) {
                     numPair += 1;
                 }
             }
@@ -25,7 +25,7 @@ public class SichuanInterruptionCondition implements IInterruptionCondition {
                 suit1[(currentTile.digit == tile.digit + 2) ? 2 : 3)] = currentTile.digit:
             }
         }
-        if numPair >= 2 {
+        if (numPair >= 2) {
             return true;
         }
         int numberSuit = 0;
