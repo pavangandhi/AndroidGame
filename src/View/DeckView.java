@@ -1,22 +1,27 @@
 package View;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Observable;
-import java.util.Observer;
-
 import Constants.Layout;
-import Constants.Ressource;
+import Constants.Resource;
 import Model.Deck;
 
-public class DeckView implements Observer {
+public class DeckView implements IView {
 	private int deckSize;
+
 	public void paint(Graphics g) {
-		g.drawImage(Ressource.getInstance().getDeckImage(), Layout.getInstance().getDeckX(), Layout.getInstance().getDeckY(), null);
-		g.setFont(new Font(Ressource.getInstance().getFontStyle(), Font.PLAIN, Layout.getInstance().getDeckFontSize()));
+		g.drawImage(Resource.getInstance().getDeckImage(), Layout.getInstance().getDeckX(),
+				Layout.getInstance().getDeckY(), null);
+		g.setFont(new Font(Resource.getInstance().getFontStyle(), Font.PLAIN, Layout.getInstance().getDeckFontSize()));
 		g.drawString("" + deckSize, Layout.getInstance().getDeckFontX(), Layout.getInstance().getDeckFontY());
 	}
 
+	public void mousseEvent(int x, int y) {
+
+	}
+
 	public void update(Observable o, Object arg) {
-		deckSize = ((Deck)o).getTileList().size();
+		deckSize = ((Deck) o).getTileList().size();
 	}
 }

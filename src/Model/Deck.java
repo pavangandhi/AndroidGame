@@ -2,7 +2,6 @@ package Model;
 
 import Constants.TileType;
 import Model.TileList.TileList;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

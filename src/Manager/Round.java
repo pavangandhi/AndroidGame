@@ -1,0 +1,52 @@
+package Manager;
+import Controller.PlayerController;
+import GUI.Component;
+import Historic.Historic;
+import Model.Board;
+import Model.Deck;
+import Model.Player;
+import Rules.SetOfRules;
+import Rules.Strategys.Sichuan.SichuanInterruptionCondition;
+import Rules.Strategys.Sichuan.SichuanVictoryCondition;
+
+public class Round {
+    private TurnManager turnManager;
+    
+    public Round(){
+		turnManager = new TurnManager();
+    }
+
+    public void start() {
+        turnManager.on(initializeRound());
+    }
+
+    public Player initializeRound() {
+		Deck.getInstance().addObserver(Component.getInstance().getDeckView());
+		Board.getInstance().addObserver(Component.getInstance().getBoardView());
+		Historic.getInstance().addObserver(Component.getInstance().getHistoricView());;
+        Deck.getInstance().initializeDeck();
+        Board.getInstance().initializeBoard();
+        
+        SetOfRules.getInstance().setInterruptionCondition(new SichuanInterruptionCondition());
+        SetOfRules.getInstance().setVictoryCondition(new SichuanVictoryCondition());
+    	Player player1 = initializePlayer("Player 1");
+		Player player2 = initializePlayer("Player 2");
+		Player player3 = initializePlayer("Player 3");
+		Player player4 = initializePlayer("Player 4");
+		player1.setNext(player2);
+		player2.setNext(player3);
+		player3.setNext(player4);
+		player4.setNext(player1);
+		
+		return player1;
+    }
+    
+    public Player initializePlayer(String name) {
+    	Player player = new Player(name);
+		player.addObserver(turnManager);
+		player.addObserver(PlayerController.getInstance());
+		player.addObserver(Component.getInstance().getPlayerView());
+    	player.initializeHand();
+    	return player;
+    }
+}

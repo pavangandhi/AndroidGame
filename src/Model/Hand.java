@@ -3,20 +3,24 @@ package Model;
 import Model.TileList.TileList;
 
 public class Hand extends TileList {
-	private int selectedTile = -1;
-	
 	public Tile removeTile() {
-		Tile tempTile = removeTile(tileList.get(selectedTile));
-		selectedTile = -1;
+		Tile tempTile = null;
+		for (Tile tile : tileList) {
+			if (tile.isSelected()) {
+				tempTile = tile;
+			}
+		}
+		tempTile.setSelected(false);
+		removeTile(tempTile);
 		return tempTile;
 	}
 
-	public int getSelectedTile() {
-		return selectedTile;
-	}
-
-	public void setSelectedTile(int selectedTile) {
-		this.selectedTile = selectedTile;
-		update();
+	public boolean hasSelectedTile() {
+		for (Tile tile : tileList) {
+			if (tile.isSelected()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

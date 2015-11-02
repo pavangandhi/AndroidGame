@@ -8,6 +8,6 @@ import Model.Tile;
  */
 public interface IInterruptionCondition {
 
-    public boolean checkInterruption(Tile tile, Hand hand);
+	public boolean checkInterruption(Tile tile, Hand hand);
 
 }

@@ -13,18 +13,19 @@ public class TurnManager implements Observer {
 	public void on(Player player) {
 		currentPlayer = player;
 		lastPlayer = currentPlayer;
-		currentPlayer.pickUpFromDeck();
+		currentPlayer.pickupFromDeck();
 	}
 
 	public void update(Observable obs, Object status) {
 		switch ((PlayerStatus) status) {
 		case turnEnded:
-			System.out.println("turnEnded");
 			currentPlayer = currentPlayer.getNext();
 			currentPlayer.checkInterruption();
+			;
 			break;
 		case doInterrupt:
-			currentPlayer.pickUpFromBoard();
+			lastPlayer = currentPlayer;
+			currentPlayer.pickupFromBoard();
 			break;
 		case doNotInterrupt:
 			if (currentPlayer.getNext() != lastPlayer) {
@@ -33,12 +34,13 @@ public class TurnManager implements Observer {
 			} else {
 				currentPlayer = lastPlayer.getNext();
 				lastPlayer = currentPlayer;
-				currentPlayer.pickUpFromDeck();
+				currentPlayer.pickupFromDeck();
 			}
 			break;
 		case victory:
 			currentPlayer = currentPlayer.getNext();
-			currentPlayer.pickUpFromDeck();
+			lastPlayer = currentPlayer;
+			currentPlayer.pickupFromDeck();
 			break;
 		default:
 			break;

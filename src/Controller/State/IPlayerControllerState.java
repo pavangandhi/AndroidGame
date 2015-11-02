@@ -1,8 +1,10 @@
 package Controller.State;
 
+import Constants.ButtonType;
+
 /**
  * Created by Kreliou on 29/10/2015.
  */
 public interface IPlayerControllerState {
-    public void interpretInput(int x, int y);
+	public void interpretInput(ButtonType buttonType);
 }

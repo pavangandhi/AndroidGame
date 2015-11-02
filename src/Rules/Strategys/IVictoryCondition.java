@@ -7,5 +7,5 @@ import Model.Hand;
  */
 public interface IVictoryCondition {
 
-    public boolean checkVictory(Hand hand);
+	public boolean checkVictory(Hand hand);
 }

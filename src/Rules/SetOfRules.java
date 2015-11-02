@@ -1,6 +1,7 @@
 package Rules;
 
 import Model.Hand;
+import Model.Tile;
 import Model.Board;
 import Rules.Strategys.IInterruptionCondition;
 import Rules.Strategys.IVictoryCondition;
@@ -13,6 +14,19 @@ public class SetOfRules {
 	private IVictoryCondition victoryCondition;
 
 	private SetOfRules() {
+	}
+
+	public boolean checkGongPickup(Tile drawedTile, Hand hand) {
+		int numPair = 0;
+		for (Tile tile : hand.getTileList()) {
+			if (drawedTile.getType() == tile.getType() && drawedTile.getDigit() == tile.getDigit()) {
+				numPair++;
+			}
+		}
+		if (numPair == 4)
+			return true;
+		else
+			return false;
 	}
 
 	public boolean checkInterruption(Hand hand) {

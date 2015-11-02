@@ -1,25 +1,19 @@
-import Constants.TileType;
-import View.PlayerView;
-import Model.Board;
-import Model.Deck;
-import Model.Hand;
-import Model.Player;
-import Model.Tile;
+	import GUI.Component;
+import GUI.Dialog;
+import GUI.Window;
+import Manager.Round;
 
 public class Main {
 	public static void main(String[] args) {
-		PlayerView.getInstance().init();
-		Round round = new Round();
-		round.start();
-		new Window();
+		new Round().start();
+		Window.getInstance().show();
 		while (true) {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			PlayerView.getInstance().repaint();
+			Component.getInstance().repaint();
 		}
 	}
 }

@@ -1,26 +1,29 @@
 package Controller.State;
 
-import Constants.Layout;
+import Constants.ButtonType;
 import Constants.PlayerStatus;
+import GUI.Component;
+import GUI.Dialog;
+import GUI.Window;
 import Model.Player;
-import View.PlayerView;
-import View.Button.UnallowedInterruptionButton;
+import View.ButtonView;
 
 /**
  * Created by Kreliou on 29/10/2015.
  */
-public class UnallowedInterruptionControllerState implements IPlayerControllerState{
+public class UnallowedInterruptionControllerState implements IPlayerControllerState {
 	private Player player;
 
-	public UnallowedInterruptionControllerState(Player player){
+	public UnallowedInterruptionControllerState(Player player) {
 		this.player = player;
-		PlayerView.getInstance().setIPaintButton(new UnallowedInterruptionButton());
+		ButtonView[] tabView = { new ButtonView(ButtonType.pass, 0), new ButtonView(ButtonType.cantTake, 1) };
+		Component.getInstance().getPlayerView().setButtonView(tabView);
+		//new Dialog(Window.getInstance(),"titre", player.getName() + ", chose if you want to interrupt and take this last tile");
 	}
-    public void interpretInput(int x, int y) {
-    	if (Math.pow((x - Layout.getInstance().getButtonX() - Layout.getInstance().getButtonSize() / 2), 2)
-				+ Math.pow(y - Layout.getInstance().getButtonY() - Layout.getInstance().getMargin() - Layout.getInstance().getButtonSize() * 3/2, 2) 
-				< Math.pow(Layout.getInstance().getButtonSize() * 2 / 3, 2)) {
+
+	public void interpretInput(ButtonType buttonType) {
+		if (buttonType == ButtonType.pass) {
 			player.setStatus(PlayerStatus.doNotInterrupt);
 		}
-    }
+	}
 }

@@ -1,9 +1,11 @@
 package Controller.State;
 
-import Constants.Layout;
+import Constants.ButtonType;
+import GUI.Component;
+import GUI.Dialog;
+import GUI.Window;
 import Model.Player;
-import View.PlayerView;
-import View.Button.ThrowButton;
+import View.ButtonView;
 
 /**
  * Created by Kreliou on 29/10/2015.
@@ -13,25 +15,14 @@ public class TileSelectionControllerState implements IPlayerControllerState {
 
 	public TileSelectionControllerState(Player player) {
 		this.player = player;
-		PlayerView.getInstance().setIPaintButton(new ThrowButton());
+		ButtonView[] tabView = { new ButtonView(ButtonType.throwTile, 0) };
+		Component.getInstance().getPlayerView().setButtonView(tabView);
+		//new Dialog(Window.getInstance(),"titre", player.getName() + ", select the tile you want to throw");
 	}
 
-	public void interpretInput(int x, int y) {
-		if (Math.pow((x - Layout.getInstance().getButtonX() - Layout.getInstance().getButtonSize() / 2), 2)
-				+ Math.pow(y - Layout.getInstance().getButtonY() - Layout.getInstance().getButtonSize() / 2, 2) 
-				< Math.pow(Layout.getInstance().getButtonSize() * 2 / 3, 2)) {
+	public void interpretInput(ButtonType buttonType) {
+		if (buttonType == ButtonType.throwTile) {
 			player.throwTile();
-		}
-		else {
-			player.selectTile(-1);
-			for (int k = 0; k < Layout.getInstance().getHandSize(); k++) {
-				if (Math.pow((x - Layout.getInstance().getMargin() - k * Layout.getInstance().getHandStep()
-						- Layout.getInstance().getTileImageSize() / 2), 2)
-						+ Math.pow(y - Layout.getInstance().getHandHeight() - Layout.getInstance().getTileImageSize()/2,
-								2) < Math.pow(Layout.getInstance().getTileImageSize() * 2 / 3, 2)) {
-					player.selectTile(k);
-				}
-			}
 		}
 	}
 }

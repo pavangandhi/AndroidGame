@@ -1,12 +1,5 @@
 package Constants;
 
 public enum PlayerStatus {
-	tilePicked,
-	gongPicked,
-	turnEnded,
-	interruptionAllowed,
-	interruptionRefused,
-	doNotInterrupt,
-	doInterrupt,
-	victory
+	tilePicked, turnEnded, interruptionAllowed, interruptionRefused, doNotInterrupt, doInterrupt, victory
 }

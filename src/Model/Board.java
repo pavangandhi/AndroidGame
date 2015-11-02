@@ -3,7 +3,6 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
-
 import Model.TileList.TileList;
 
 public class Board extends TileList {
@@ -23,7 +22,7 @@ public class Board extends TileList {
 	}
 
 	public Tile getLastTile() {
-		return tileList.get(tileList.size()-1);
+		return tileList.get(tileList.size() - 1);
 	}
 
 	public Tile pickLastTile() {
